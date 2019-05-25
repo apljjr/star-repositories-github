@@ -1,11 +1,6 @@
 <template>
   <div class="home">
     <div class="row">
-      <div class="col-12">
-      <h1>{{ view }}</h1>
-      </div>
-    </div>
-    <div class="row">
       <div class="col-12 text-center">
         <div>
           <b-form inline class="formCenter">
@@ -26,7 +21,6 @@ export default {
   name: 'Home',
   data () {
     return {
-      view: 'githubstars',
       usename: null
     }
   },
