@@ -9,7 +9,8 @@
           </b-form>
         </div>
         <div>
-          <b-button class="marginTopButton" @click="goRepositories()">get repositories</b-button> 
+          <b-button class="marginTopButton" variant="outline-secondary" 
+          @click="goRepositories()">get repositories<font-awesome-icon class="marginIconSeta" icon="caret-right"/></b-button> 
         </div>
       </div>
     </div>
@@ -17,6 +18,10 @@
 </template>
 
 <script>
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
+library.add(faCaretRight)
+
 export default {
   name: 'Home',
   data () {
@@ -26,7 +31,7 @@ export default {
   },
   methods: {
     goRepositories () {
-      this.$router.push({ name: 'Repositories', params: { username: this.usename}})
+      this.$router.push({ name: 'RepositoriesStars', params: { username: this.usename}})
     }
   }
 }
@@ -41,5 +46,8 @@ export default {
 
   .marginTopButton {
     margin-top: 20px
+  }
+  .marginIconSeta {
+    margin-left: 9px
   }
 </style>
