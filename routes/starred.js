@@ -3,7 +3,7 @@ var router = express.Router();
 var axios = require('axios');
 
 /* GET starred listing. */
-router.get('/:user', function(req, res, next) {
+router.get('/:user', function(req, res) {
   axios.get('https://api.github.com/users/' + req.params.user + '/starred')
   .then(function (response) {
     res.status(200).send(response.data)
