@@ -34,13 +34,22 @@
             <td>{{repository.description}}</td>
             <td>{{repository.language}}</td>
             <td></td>
-            <td><a href="#">edit</a></td>
+            <td><a href="#" @click="showEditModal(repository)">edit</a></td>
           </tr>
         </tbody>
       </table>
     </div>
+    <b-modal ref="edit-modal" centered hide-header-close :hide-header="true" :hide-footer="true">
+      <p>Edit tags for {{repositoryModal}}</p>
+      <b-form-input v-model="tagsInput" placeholder="tags"></b-form-input>
+      <div class="text-center">
+        <b-button class="buttonTagLeft" variant="primary"
+            @click="saveTag()">Save</b-button> 
+        <b-button class="buttonTagRight" variant="outline-secondary" 
+            @click="hideEditModal()">Cancel</b-button>
+      </div>
+    </b-modal>
   </div>
-  
 </template>
 
 <script>
@@ -59,7 +68,9 @@ export default {
       load: true,
       msgLoad: 'Getting the repositories lst from Github...',
       listRepositoriesStars: [],
-      search: ''
+      search: '',
+      repositoryModal: '',
+      tagsInput: null
     }
   },
   methods: {
@@ -69,8 +80,19 @@ export default {
         this.listRepositoriesStars = response.data
         this.load = false
       })
-      .catch(error => {
-      })
+      // .catch(error => {
+      // })
+    },
+    showEditModal(repository) {
+      this.repositoryModal = 'Edit tags for ' + repository.name
+      this.$refs['edit-modal'].show()
+    },
+    hideEditModal() {
+      this.repositoryModal = null
+      this.$refs['edit-modal'].hide()
+    },
+    saveTag () {
+
     }
   },
   mounted () {
@@ -116,5 +138,17 @@ export default {
   }
   .positionIcon > input{
     padding-left: 40px;
+  }
+  .buttonTagLeft {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-top: 10px;
+    width: 70px;
+  }
+  .buttonTagRight {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-top: 10px;
+    width: 70px;
   }
 </style>
