@@ -1,4 +1,4 @@
-# front2
+# githubstars-front
 
 ## Project setup
 ```
